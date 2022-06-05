@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add deposits</title>
+</head>
+<body>
+<h2>Add deposits</h2>
+
+<form method="post" th:action="@{/add-new-deposit}" th:object="${deposit}">
+
+    <label for="city">Deposit city</label><br>
+    <input type="text" id="city" name="city" th:field="*{city}"><br>
+
+    <label for="street">Deposit street</label><br>
+    <input type="text" id="street" name="street" th:field="*{street}"><br>
+
+    <br>
+    <input type="submit" value="Add new deposit">
+
+</form>
+
+</body>
+</html>

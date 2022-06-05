@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit deposits</title>
+</head>
+<body>
+
+<form method="post" th:action="@{/edit-deposit}" th:object="${deposit}">
+
+    <input type="hidden" th:field="*{regNumber}"><br>
+
+    <label for="city">Deposit city</label><br>
+    <input type="text" id="city" name="city" th:field="*{city}"><br>
+
+    <label for="street">Deposit street</label><br>
+    <input type="text" id="street" name="street" th:field="*{street}"><br>
+
+    <br>
+    <input type="submit" value="OK">
+
+</form>
+
+</body>
+</html>

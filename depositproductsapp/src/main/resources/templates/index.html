@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Deposits</title>
+</head>
+<body>
+<h2>Deposits list</h2>
+<a href="/view-products">Go to products</a><br><br>
+<a href="/addDeposits">Add deposit</a>
+    <table cellspacing="10">
+        <tr>
+            <th>Reg.nr</th>
+            <th>City</th>
+            <th>Street</th>
+        </tr>
+        <tr th:each="deposit: ${deposits}">
+            <td><p th:text="${deposit.regNumber} + '. '"></p></td>
+            <td align="center"><p th:text="${deposit.city}"></p></td>
+            <td align="center"><p th:text="${deposit.street}"></p></td>
+            <td width="50" align="center"><a th:href="@{/edit-deposit-page/{id} (id = ${deposit.regNumber})}">Edit</a></td>
+            <td align="center"><a th:href="@{/delete-deposit/{id} (id = ${deposit.regNumber})}">Delete</a></td>
+        </tr>
+    </table>
+</body>
+</html>

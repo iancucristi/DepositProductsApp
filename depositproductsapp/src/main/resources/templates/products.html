@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+<h2>Products list</h2>
+<a href="/view-deposits">Back to deposits</a><br><br>
+<table cellspacing="10">
+    <tr>
+        <! Add product>
+        <th align="left" colspan="7"><a href="/addProduct">Add product</a></th>
+
+        <! PRODUCT SEARCH>
+        <th width="500px" align="right">
+
+            <! SEARCH FORM>
+            <form method="post" th:action="@{/products-found}" th:object="${product}">
+                <input type="text" id="name" name="name" th:field="*{name}">
+                <input type="submit" value="Search">
+            </form>
+            <br>
+
+            <! PRODUCTS FOUND>
+            <ul>
+                <li th:each="product: ${productList}">
+                    <p th:text="${product.seriesNumber} + '. ' + ${product.name} + ' ' + ${product.producer}">
+                </li>
+            </ul>
+        </th>
+    </tr>
+    <tr>
+        <td>Series nr</td>
+        <td align="center">Name</td>
+        <td align="center">Producer</td>
+        <td align="center">Description</td>
+        <td align="center">Quantity</td>
+    </tr>
+
+    <! MYSQL PRODUCTS LIST>
+    <tr th:each="product: ${products}">
+        <td><p th:text="${product.seriesNumber} + '. '"></p></td>
+        <td align="center"><p th:text="${product.name}"></p></td>
+        <td align="center"><p th:text="${product.producer}"></p></td>
+        <td align="center"><p th:text="${product.description}"></p></td>
+        <td align="center"><p th:text="${product.quantity}"></p></td>
+        <td width="50" align="center"><a th:href="@{/edit-product-page/{id} (id = ${product.seriesNumber})}">Edit</a></td>
+        <td align="center"><a th:href="@{/delete-product/{id} (id = ${product.seriesNumber})}">Delete</a></td>
+    </tr>
+</table>
+</body>
+</html>
