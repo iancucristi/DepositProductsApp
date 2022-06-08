@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 import ro.itschool.depositproductsapp.entity.DepositModel;
 import ro.itschool.depositproductsapp.entity.ProductModel;
 import ro.itschool.depositproductsapp.repository.ProductRepository;
-import ro.itschool.depositproductsapp.service.exception.DepositNotFoundException;
 import ro.itschool.depositproductsapp.service.exception.ProductNotFoundException;
 
 import java.util.ArrayList;
@@ -46,6 +45,7 @@ public class ProductService {
         newProductModel.setProducer(oldProductModel.getProducer());
         newProductModel.setDescription(oldProductModel.getDescription());
         newProductModel.setQuantity(oldProductModel.getQuantity());
+        newProductModel.setDeposit(oldProductModel.getDeposit());
         productRepository.save(newProductModel);
     }
 
@@ -55,8 +55,12 @@ public class ProductService {
         for (ProductModel product : productModels) {
             if (product.getName().equals(name)) {
                 productFound.add(product);
-            } else throw new ProductNotFoundException("Product with name " + name + " not found");
+            }
+        }
+        if (productFound.isEmpty()) {
+            throw new ProductNotFoundException("Product with name " + name + " not found");
         }
         return productFound;
     }
+
 }

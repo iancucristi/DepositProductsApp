@@ -65,3 +65,4 @@ public class ProductModel {
         this.deposit = deposit;
     }
 }
+
